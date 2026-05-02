@@ -18,3 +18,18 @@ async function obtenerEstudiantes() {
 }
 
 obtenerEstudiantes()
+
+async function insertarEstudiante(id, nombre, carrera) {
+  const { data, error } = await supabase
+    .from('estudiantes')
+    .insert([{ id, nombre, carrera }])
+
+  if (error) {
+    console.log('Error al insertar:', error.message)
+  } else {
+    console.log('Estudiante guardado con éxito')
+  }
+}
+
+// Para usarla, solo llámala así:
+// insertarEstudiante(2, 'Mauricio Ong', 'Licenciatura en Derecho')
